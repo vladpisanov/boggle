@@ -61,6 +61,15 @@ describe Board do
     end
   end
 
+  context '#has_word? with Qu' do
+    let(:board) { Board[%w[l i q i], %w[x x x d], %w[x x x x], %w[x x x x]] }
+
+    it 'finds "quid" and "liquid" (handles Qu lookahead)' do
+      expect(board).to have_word 'quid'
+      expect(board).to have_word 'liquid'
+    end
+  end
+
   context '#score' do
     it 'rates simple words correctly' do
       expect(Board.score('dog')).to be 1

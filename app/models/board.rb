@@ -29,6 +29,7 @@ class Board < Matrix
   # @return [Boolean] true if word was found
   #
   def has_word?(word) # rubocop:disable Naming/PredicateName
+    word = word.downcase
     each_with_index.any? do |_, x, y|
       has_word_at?(word, x, y)
     end
@@ -59,6 +60,10 @@ class Board < Matrix
   def has_word_at?(word, x, y, visited = []) # rubocop:disable Naming/PredicateName
     first, rest = word.split(//, 2)
     return false unless self[x, y] == first
+
+    # Special case: if the current letter is "q" and the next one is "u",
+    # vacuously allow the "u" (since Q is usually followed by U in English)
+    rest.delete_prefix!('u') if first == 'q'
 
     rest.empty? || neighbors(x, y).without(visited).any? do |nx, ny|
       has_word_at?(rest, nx, ny, visited + [[x, y]])
