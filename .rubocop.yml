@@ -20,3 +20,7 @@ Style/HashTransformKeys:
 
 Style/HashTransformValues:
    Enabled: true
+
+# Quite a few matrix operations, so we'll allow "x" and "y" as parameters
+Naming/MethodParameterName:
+   AllowedNames: ["x", "y"]
