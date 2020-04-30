@@ -60,5 +60,20 @@ describe Board do
       expect(board).to_not have_word 'aba'
     end
   end
+
+  context '#score' do
+    it 'rates simple words correctly' do
+      expect(Board.score('dog')).to be 1
+      expect(Board.score('dogs')).to be 1
+      expect(Board.score('hello')).to be 2
+      expect(Board.score('bottle')).to be 3
+      expect(Board.score('bottles')).to be 5
+      expect(Board.score('democratic')).to be 11
+    end
+
+    it 'complains about short words' do
+      expect { Board.score('me') }.to raise_error ArgumentError
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

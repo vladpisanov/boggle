@@ -34,6 +34,24 @@ class Board < Matrix
     end
   end
 
+  #
+  # Returns the score for a given word
+  #
+  # @param [String] word word to be valued
+  #
+  # @return [Integer] number of points
+  #
+  def self.score(word)
+    case word.size
+    when 0, 1, 2 then raise ArgumentError, 'Must be at least 3 letters'
+    when 3, 4    then 1
+    when 5       then 2
+    when 6       then 3
+    when 7       then 5
+    else              11
+    end
+  end
+
   private
 
   # Helper used by `has_word?`. Returns true if string `word` can be found
