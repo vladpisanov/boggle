@@ -2,7 +2,7 @@
   A list to display all found words so far, along with their scores
 */
 
-import React from 'react'
+import React           from 'react'
 import { useSelector } from 'react-redux'
 
 export default function FoundWords() {
