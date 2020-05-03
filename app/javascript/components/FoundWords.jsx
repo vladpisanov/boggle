@@ -14,7 +14,7 @@ export default function FoundWords() {
       <ul>
         {words.map(word => (
           <li key={word}>
-            {word.word} <small>({word.score}pts)</small>
+            {word.word.toUpperCase()} <small>({word.score}pts)</small>
           </li>
         ))}
       </ul>

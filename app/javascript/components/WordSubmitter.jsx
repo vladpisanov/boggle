@@ -42,7 +42,7 @@ export default function WordSubmitter() {
         />
       </Box>
       <Box ml={1}>
-        <Button variant="contained" color="secondary" onClick={submitWord}>Submit</Button>
+        <Button variant="contained" color="primary" onClick={submitWord}>Submit</Button>
       </Box>
     </Box>
   )
