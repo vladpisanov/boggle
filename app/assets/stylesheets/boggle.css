@@ -1,3 +1,5 @@
+h2   { color: #555 }
+a    { text-decoration: none }
 
 /* Main app header */
 
@@ -18,7 +20,7 @@ div.die {
   width:         5vw;
   height:        5vw;
   line-height:   5vw;
-  background:    white;
+  background:    #eee;
   border:        2px solid lightgray;
   border-radius: 0.5em;
   font-size:     3vw;

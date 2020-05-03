@@ -15,7 +15,6 @@ import Timer                        from './Timer'
 import WordSubmitter                from './WordSubmitter'
 import { masterStore, fetchBoard, tickTimer } from '../slices/Master'
 
-
 setInterval(() => masterStore.dispatch(tickTimer()), 1000)
 
 export default function Game() {
@@ -33,10 +32,10 @@ export default function Game() {
     return (
       <>
         <h1>Let's play Boggle!</h1>
-        <p>
+        <h2>
           Click the button to start a new game!
           ( <a href="https://en.wikipedia.org/wiki/Boggle">Rules</a> )
-        </p>
+        </h2>
         {newGameButton}
       </>
     )
@@ -47,7 +46,7 @@ export default function Game() {
     return (
       <>
         <h1>Time's up!</h1>
-        <p>You found {words.length} word(s) for a total score of <strong>{score}</strong></p>
+        <h2>You found {words.length} word(s) for a total score of <strong>{score}</strong></h2>
         {newGameButton}
       </>
     )
