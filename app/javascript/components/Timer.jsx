@@ -10,7 +10,7 @@ import { GAME_DURATION } from '../slices/Master'
 
 export default function Timer() {
   const left = useSelector(state => state.timeLeft)
-  
+
   return (
     <>
       Time left: {Math.floor(left / 60)} min {left % 60} sec

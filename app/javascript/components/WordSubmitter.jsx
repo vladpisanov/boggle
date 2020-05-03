@@ -31,14 +31,14 @@ export default function WordSubmitter() {
   return (
     <Box display="flex" mt={2} alignItems="center">
       <Box flexGrow={1}>
-        <TextField 
+        <TextField
           value={newWord}
           onKeyPress={onKeyPress}
           onChange={onChange}
           variant="outlined"
           label="Your word"
           fullWidth
-          margin="dense" 
+          margin="dense"
         />
       </Box>
       <Box ml={1}>
