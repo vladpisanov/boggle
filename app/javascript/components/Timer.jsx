@@ -13,7 +13,7 @@ export default function Timer() {
 
   return (
     <>
-      Time left: {Math.floor(left / 60)} min {left % 60} sec
+      Time left: {Math.floor(left / 60)}min {left % 60}s
       <LinearProgress variant="determinate" value={100 * left / GAME_DURATION} />
     </>
   )
