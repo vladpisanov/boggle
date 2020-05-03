@@ -10,14 +10,14 @@ import Snackbar from '@material-ui/core/Snackbar'
 import { clearLastError } from '../slices/Master.js'
 
 export default function ErrorPopup() {
-  const lastError = useSelector(state => state.lastError)
-  const dispatch  = useDispatch()
-  const close     = () => dispatch(clearLastError())
+  const error    = useSelector(state => state.lastError)
+  const dispatch = useDispatch()
+  const close    = () => dispatch(clearLastError())
 
   return (
-    <Snackbar open={!!lastError} autoHideDuration={5000} onClose={close}>
+    <Snackbar open={!!error} autoHideDuration={5000} onClose={close} key={error}>
       <Alert onClose={close} severity="error">
-        {lastError}
+        {error}
       </Alert>
     </Snackbar>
   )
