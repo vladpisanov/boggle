@@ -3,9 +3,10 @@
   and as a timestamp
 */
 
-import React           from 'react'
-import { useSelector } from 'react-redux'
-import LinearProgress  from '@material-ui/core/LinearProgress'
+import React             from 'react'
+import { useSelector }   from 'react-redux'
+import LinearProgress    from '@material-ui/core/LinearProgress'
+import { GAME_DURATION } from '../slices/Master'
 
 export default function Timer() {
   const left = useSelector(state => state.timeLeft)
@@ -13,7 +14,7 @@ export default function Timer() {
   return (
     <>
       Time left: {Math.floor(left / 60)} min {left % 60} sec
-      <LinearProgress variant="determinate" value={100 * left / (3 * 60)} />
+      <LinearProgress variant="determinate" value={100 * left / GAME_DURATION} />
     </>
   )
 }
