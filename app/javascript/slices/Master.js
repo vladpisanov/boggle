@@ -6,7 +6,7 @@ import { createSlice, configureStore, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 // Number of seconds given to the player
-export const GAME_DURATION = 10
+export const GAME_DURATION = 3 * 60
 
 // Asyncronous action creator for fetching a new board from the server
 export const fetchBoard = createAsyncThunk(
@@ -20,7 +20,16 @@ export const fetchBoard = createAsyncThunk(
 // Asyncronous action creator for checking if a word is on the board
 export const findWord = createAsyncThunk(
   'findWord',
-  async (word) => {
+  async (word, store) => {
+    word = word.toLowerCase()
+
+    // Do some sanity checks before firing off the request to the server
+    if (!word)
+      return {error: 'Word cannot be blank!'}
+
+    if (store.getState().wordsFound.find((rec) => rec.word == word))
+      return {error: 'You have already found this word!'}
+
     const response = await axios.get(`/board/find/?word=${word}`)
     return response.data
   }
@@ -54,6 +63,7 @@ const masterSlice = createSlice({
       state.timeLeft   = GAME_DURATION
       state.wordsFound = []
       state.board      = action.payload.board
+      state.lastError  = null
     },
     [findWord.pending]: (state) => {
       // TODO: could show a spinner here
@@ -67,7 +77,7 @@ const masterSlice = createSlice({
     },
     [findWord.rejected]: (state, action) => {
       // Some kind of deep server/network error
-      state.lastError = `Something is broken. Contact the developer! $(action.error.response)`
+      state.lastError = `Something is broken. Contact the developer! ${action.error.response}`
     }
   }
 })
