@@ -15,7 +15,13 @@ export default function ErrorPopup() {
   const close    = () => dispatch(clearLastError())
 
   return (
-    <Snackbar open={!!error} autoHideDuration={5000} onClose={close} key={error}>
+    <Snackbar
+      open={!!error}
+      autoHideDuration={5000}
+      onClose={close}
+      key={error}
+      anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+    >
       <Alert onClose={close} severity="error">
         {error}
       </Alert>
