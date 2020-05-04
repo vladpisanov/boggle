@@ -12,7 +12,7 @@ export const GAME_DURATION = 3 * 60
 export const fetchBoard = createAsyncThunk(
   'fetchBoard',
   async () => {
-    const response = await axios.get('/board/reset')
+    const response = await axios.post('/board/reset')
     return response.data
   }
 )
