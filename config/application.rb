@@ -33,5 +33,7 @@ module Boggle
     config.generators.system_tests = nil
 
     config.autoload_paths << Rails.root.join('lib')
+
+    config.hosts << 'assurance-boggle.fairuse.org'
   end
 end
