@@ -15,28 +15,28 @@ describe BoardsController do
   end
 
   context 'GET #find' do
-    let(:session) { { board: [%w[g o d s]] } }
+    let(:session) { { board: [%w[G O D S]] } }
 
     it 'finds a valid word and its score' do
       get :find, params: { word: 'Dog' }, session: session
       expect(response).to have_http_status(:ok)
-      expect(json_response['word']).to  eq 'dog'
+      expect(json_response['word']).to  eq 'DOG'
       expect(json_response['score']).to eq 1
     end
 
     it 'complains about short words' do
-      get :find, params: { word: 'X' }, session: session
-      expect(json_response['error']).to eq '"x" is too short'
+      get :find, params: { word: 'x' }, session: session
+      expect(json_response['error']).to eq '"X" is too short'
     end
 
     it 'complains about missing words' do
       get :find, params: { word: 'abc' }, session: session
-      expect(json_response['error']).to eq '"abc" is not on the board'
+      expect(json_response['error']).to eq '"ABC" is not on the board'
     end
 
     it 'complains about fake words' do
       get :find, params: { word: 'sdog' }, session: session
-      expect(json_response['error']).to eq '"sdog" is not a real word'
+      expect(json_response['error']).to eq '"SDOG" is not a real word'
     end
   end
 end

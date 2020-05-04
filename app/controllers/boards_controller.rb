@@ -22,7 +22,7 @@ class BoardsController < ApplicationController
   # against the dictionary
   #
   def find
-    word  = params.require(:word).strip.downcase
+    word  = params.require(:word).strip.upcase
     error = validate_word(word)
     if error
       render json: { error: error }

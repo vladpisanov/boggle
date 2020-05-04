@@ -11,7 +11,7 @@ describe Board do
     it 'creates a standard randomized board' do
       expect(board.row_count).to be 4
       expect(board.column_count).to be 4
-      expect(board).to be_all(/[a-z]/)
+      expect(board).to be_all(/[A-Z]/)
     end
 
     it 'creates a non-standard board' do
@@ -21,67 +21,67 @@ describe Board do
   end
 
   context '#has_word?' do
-    let(:board) { Board[%w[a b c d], %w[e f g h], %w[i j k l], %w[m n o p]] }
+    let(:board) { Board[%w[A B C D], %w[E F G H], %w[I J K L], %w[M N O P]] }
 
-    it 'finds "a"' do
-      expect(board).to have_word 'a'
+    it 'finds "A"' do
+      expect(board).to have_word 'A'
     end
 
-    it 'does not find "z"' do
-      expect(board).to_not have_word 'z'
+    it 'does not find "Z"' do
+      expect(board).to_not have_word 'Z'
     end
 
-    it 'finds "abcd"/"dcba" (horizontals)' do
-      expect(board).to have_word 'abcd'
-      expect(board).to have_word 'dcba'
+    it 'finds "ABCD"/"DCBA" (horizontals)' do
+      expect(board).to have_word 'ABCD'
+      expect(board).to have_word 'DCBA'
     end
 
-    it 'finds "aeim"/"miea" (verticals)' do
-      expect(board).to have_word 'aeim'
-      expect(board).to have_word 'miea'
+    it 'finds "AEIM"/"MIEA" (verticals)' do
+      expect(board).to have_word 'AEIM'
+      expect(board).to have_word 'MIEA'
     end
 
-    it 'finds "afkp"/"pkfa" (diagonals)' do
-      expect(board).to have_word 'afkp'
-      expect(board).to have_word 'pkfa'
+    it 'finds "AFKP"/"PKFA" (diagonals)' do
+      expect(board).to have_word 'AFKP'
+      expect(board).to have_word 'PKFA'
     end
 
-    it 'finds "abcdhgfeijklponm"/"mnoplkjiefghdcba" (full snake traversal)' do
-      expect(board).to have_word 'abcdhgfeijklponm'
-      expect(board).to have_word 'mnoplkjiefghdcba'
+    it 'finds "ABCDHGFEIJKLPONM"/"MNOPLKJIEFGHDCBA" (full snake traversal)' do
+      expect(board).to have_word 'ABCDHGFEIJKLPONM'
+      expect(board).to have_word 'MNOPLKJIEFGHDCBA'
     end
 
-    it 'finds "abfijkhd"/"dhkjifba" (mixed traversal)' do
-      expect(board).to have_word 'abfijkhd'
-      expect(board).to have_word 'dhkjifba'
+    it 'finds "ABFIJKHD"/"DHKJIFBA" (mixed traversal)' do
+      expect(board).to have_word 'ABFIJKHD'
+      expect(board).to have_word 'DHKJIFBA'
     end
 
-    it 'does not find "aba" (reused letter)' do
-      expect(board).to_not have_word 'aba'
+    it 'does not find "ABA" (reused letter)' do
+      expect(board).to_not have_word 'ABA'
     end
   end
 
   context '#has_word? with Qu' do
-    let(:board) { Board[%w[l i q i], %w[x x x d], %w[x x x x], %w[x x x x]] }
+    let(:board) { Board[%w[L I Q I], %w[X X X D], %w[X X X X], %w[X X X X]] }
 
-    it 'finds "quid" and "liquid" (handles Qu lookahead)' do
-      expect(board).to have_word 'quid'
-      expect(board).to have_word 'liquid'
+    it 'finds "QUID" and "LIQUID" (handles Qu lookahead)' do
+      expect(board).to have_word 'QUID'
+      expect(board).to have_word 'LIQUID'
     end
   end
 
   context '#score' do
     it 'rates simple words correctly' do
-      expect(Board.score('dog')).to be 1
-      expect(Board.score('dogs')).to be 1
-      expect(Board.score('hello')).to be 2
-      expect(Board.score('bottle')).to be 3
-      expect(Board.score('bottles')).to be 5
-      expect(Board.score('democratic')).to be 11
+      expect(Board.score('DOG')).to be 1
+      expect(Board.score('DOGS')).to be 1
+      expect(Board.score('HELLO')).to be 2
+      expect(Board.score('BOTTLE')).to be 3
+      expect(Board.score('BOTTLES')).to be 5
+      expect(Board.score('DEMOCRATIC')).to be 11
     end
 
     it 'complains about short words' do
-      expect { Board.score('me') }.to raise_error ArgumentError
+      expect { Board.score('ME') }.to raise_error ArgumentError
     end
   end
 end
