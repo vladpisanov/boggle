@@ -1,9 +1,9 @@
 en:
   boards:
     find:
-      too_short: '%{word} is too short'
-      missing:   '%{word} is not on board'
-      bad_word:  '%{word} is not a real word'
+      too_short: '"%{word}" is too short'
+      missing:   '"%{word}" is not on the board'
+      bad_word:  '"%{word}" is not a real word'
   models:
     board:
       errors:
