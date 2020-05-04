@@ -6,6 +6,15 @@ require 'matrix'
 # An arbitrary-sized Boggle board
 #
 class Board < Matrix
+  # The official 16 dice configuration according to
+  # https://boardgames.stackexchange.com/questions/29264/boggle-what-is-the-dice-configuration-for-boggle-in-various-languages
+  REAL_DICE = [
+    %w[R I F O B X], %w[I F E H E Y], %w[D E N O W S], %w[U T O K N D],
+    %w[H M S R A O], %w[L U P E T S], %w[A C I T O A], %w[Y L G K U E],
+    %w[Q B M J O A], %w[E H I S P N], %w[V E T I G N], %w[B A L I Y T],
+    %w[E Z A V N D], %w[R A L E S C], %w[U W I L R G], %w[P A C E M D]
+  ].freeze
+
   #
   # Factory method to build a random board
   #
@@ -15,10 +24,9 @@ class Board < Matrix
   # @return [Board] new randomized board
   #
   def self.random(width = 4, height = 4)
-    # NOTE: real Boggle uses dice, so the distribution isn't this uniform,
-    #       but we'll keep it simple here
-    chars = ('a'..'z').to_a
-    build(height, width) { chars.sample }
+    build(height, width).with_index do |_, i|
+      REAL_DICE[i % REAL_DICE.size].sample
+    end
   end
 
   #
@@ -29,7 +37,7 @@ class Board < Matrix
   # @return [Boolean] true if word was found
   #
   def has_word?(word) # rubocop:disable Naming/PredicateName
-    word = word.downcase
+    word = word.upcase
     each_with_index.any? do |_, x, y|
       has_word_at?(word, x, y)
     end
@@ -63,7 +71,7 @@ class Board < Matrix
 
     # Special case: if the current letter is "q" and the next one is "u",
     # vacuously allow the "u" (since Q is usually followed by U in English)
-    rest.delete_prefix!('u') if first == 'q'
+    rest.delete_prefix!('U') if first == 'Q'
 
     rest.empty? || neighbors(x, y).without(visited).any? do |nx, ny|
       has_word_at?(rest, nx, ny, visited + [[x, y]])
