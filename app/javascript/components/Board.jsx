@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 export default function Board() {
   const board        = useSelector(state => state.board)
-  const formatLetter = (letter) => (letter == 'q') ? 'Qu' : letter.toUpperCase()
+  const formatLetter = (letter) => (letter == 'Q') ? 'Qu' : letter.toUpperCase()
 
   return (
     <>

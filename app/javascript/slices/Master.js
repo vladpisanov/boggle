@@ -21,7 +21,7 @@ export const fetchBoard = createAsyncThunk(
 export const findWord = createAsyncThunk(
   'findWord',
   async (word, store) => {
-    word = word.toLowerCase()
+    word = word.toUpperCase()
 
     // Do some sanity checks before firing off the request to the server
     if (!word)
