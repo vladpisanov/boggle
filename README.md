@@ -1,24 +1,20 @@
-# README
+# Boggle App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple implementation of the [Boggle](https://en.wikipedia.org/wiki/Boggle) word game using Rails 6, React and Redux.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Follow standard Rails deployment steps:
 
-* System dependencies
+```sh
+bundle
+yarn
+rails s
+```
 
-* Configuration
+The app also requires a system word dictionary, so make sure to install at least one. For example, for American English, run:
 
-* Database creation
+```sh
+apt-get install wamerican
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
