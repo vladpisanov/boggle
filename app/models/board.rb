@@ -75,6 +75,6 @@ class Board < Matrix
   def neighbors(x, y)
     [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
       .map    { |dx, dy| [x + dx, y + dy] }
-      .select { |cx, cy| cx.in?(0...column_size) && cy.in?(0...row_size) }
+      .select { |cx, cy| cx.in?(0...row_size) && cy.in?(0...column_size) }
   end
 end
