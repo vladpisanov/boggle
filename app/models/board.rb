@@ -44,7 +44,7 @@ class Board < Matrix
   #
   def self.score(word)
     case word.size
-    when 0, 1, 2 then raise ArgumentError, 'Must be at least 3 letters'
+    when 0, 1, 2 then raise ArgumentError, I18n.t('models.board.errors.too_short')
     when 3, 4    then 1
     when 5       then 2
     when 6       then 3
@@ -74,14 +74,7 @@ class Board < Matrix
   # provided they're still within the board's limits
   def neighbors(x, y)
     [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
-      .map { |dx, dy| [x + dx, y + dy] }
+      .map    { |dx, dy| [x + dx, y + dy] }
       .select { |cx, cy| cx.in?(0...column_size) && cy.in?(0...row_size) }
-    # .select { |cell| inside?(*cell) }
   end
-
-  # True if cell (x, y) lies within the board's limits
-  # def inside?(x, y)
-  #   #x >= 0 && x < column_size && y >= 0 && y < row_size
-  #   x.in?(0...column_size) && y.in?(0...row_size)
-  # end
 end
