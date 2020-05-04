@@ -44,12 +44,12 @@ class Board < Matrix
   #
   def self.score(word)
     case word.size
-    when 0, 1, 2 then raise ArgumentError, I18n.t('models.board.errors.too_short')
-    when 3, 4    then 1
-    when 5       then 2
-    when 6       then 3
-    when 7       then 5
-    else              11
+    when 0..2 then raise ArgumentError, I18n.t('models.board.errors.too_short')
+    when 3, 4 then 1
+    when 5    then 2
+    when 6    then 3
+    when 7    then 5
+    else      11
     end
   end
 
