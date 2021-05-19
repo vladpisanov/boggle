@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.6.5'
 
 # Server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 
 # Rails
 gem 'bootsnap', '>= 1.4.2', require: false
